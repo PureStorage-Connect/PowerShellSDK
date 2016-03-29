@@ -4,10 +4,11 @@ The Pure Storage PowerShell SDK provides integration with the Purity Operating E
 
 ### RELEASE COMPATIBILITY
 
-This release requires PowerShell 3.0 or higher.
-This release requires .NET 4.5.
-This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0, 1.1, 1.2, 1.3, or 1.4.
-This release requires a 64-bit operating system. 
+* This release requires PowerShell 3.0 or higher.
+* This release requires .NET 4.5.
+* This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0, 1.1, 1.2, 1.3, or 1.4.
+* This release requires a 64-bit operating system.
+* This release requires an operating system that supports the TLS 1.1/1.2 protocols such as Windows 7 & up or Windows Server 2008 R2 or higher.
 
 ### INSTALLATION AND UNINSTALLATION
 
