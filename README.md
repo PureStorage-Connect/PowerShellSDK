@@ -2,6 +2,11 @@
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
+### Downloads
+* [Installation Package](../blob/master/PurePowerShellSDKInstaller.msi)
+* [Quick Start Guide for Pure Storage PowerShell SDK (PDF)](../blob/master/Quick%20Start%20Guide%20for%20Pure%20Storage%20PowerShell%20SDK.pdf)
+* [Quick Start Guide PowerShell SDK Examples (ZIP)](../blob/master/SDK-Examples.zip)
+
 ### RELEASE COMPATIBILITY
 
 * This release requires PowerShell 3.0 or higher.
