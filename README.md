@@ -8,10 +8,10 @@ The Pure Storage PowerShell SDK provides integration with the Purity Operating E
 * [Quick Start Guide PowerShell SDK Examples (ZIP)](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/SDK-Examples.zip)
 
 ### LATEST RELEASE
-* Latest [v1.5.5](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.5)
+* Latest [v1.5.5](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.5.0)
 
 ### OLDER RELEASES
-* [v1.5.4](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.4)
+* [v1.5.4](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.4.0)
 
 ### INSTALLATION AND UNINSTALLATION
 To install the PowerShell SDK, extract and run PurePowerShellSDKInstaller.msi, and follow the instructions. Administrator privilege is required to install. To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell prompt. The newly installed cmdlets should be listed. The PowerShell SDK can be uninstalled from "Programs and Features" of the Control Panel.
