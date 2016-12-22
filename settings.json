@@ -2,6 +2,6 @@
     "id": "PowerShellSDK",
     "filter": "devops",
     "image": "http://code.purestorage.com/images/9_PowershellSDK.png",
-    "featured": 1,
+    "featured": 0,
     "priority": 1
 }
