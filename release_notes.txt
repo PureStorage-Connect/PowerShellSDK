@@ -18,6 +18,13 @@ KNOWN ISSUES
 Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
 Get-PfaVolumeSpaceMetrics does not return the "size" property of a volume if the array is connected using REST API 1.0 or 1.1.
 
+RELEASE 1.7
+
+ADDITIONS
+Support for Pure Storage arrays with IPv6 addresses
+
+RELEASE 1.6
+
 ADDITIONS
 The last release for the Pure Storage PowerShell SDK was 1.5
  
