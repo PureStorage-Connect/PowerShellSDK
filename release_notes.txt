@@ -1,4 +1,4 @@
-Pure Storage PowerShell SDK 1.6 Release Notes
+Pure Storage PowerShell SDK 1.7.4.0 Release Notes
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
