@@ -1,4 +1,4 @@
-Pure Storage PowerShell SDK 1.7.4.0 Release Notes
+Pure Storage PowerShell SDK 1.13.0 Release Notes
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
@@ -6,17 +6,125 @@ RELEASE COMPATIBILITY
 
 This release requires PowerShell 3.0 or higher.
 This release requires .NET 4.5.
-This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7.
+This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.13 inclusive.
 This release requires a 64-bit operating system. 
 
 INSTALLATION AND UNINSTALLATION
 
 To install the PowerShell SDK, extract and run PurePowerShellSDKInstaller.msi, and follow the instructions. Administrator privilege is required to install. To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell prompt. The newly installed cmdlets should be listed. The PowerShell SDK can be uninstalled from "Programs and Features" of the Control Panel.
 
+The PowerShell SDK can also be installed using the PowerShell Gallery. See https://www.powershellgallery.com/ for details on how to discover resources on the PowerShell Gallery.
+
 KNOWN ISSUES
 
 Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
-Get-PfaVolumeSpaceMetrics does not return the "size" property of a volume if the array is connected using REST API 1.0 or 1.1.
+
+RELEASE 1.13.0
+
+Release 1.13.0 adds the following changes to Release 1.7
+
+Support for REST 1.12 and REST 1.13, bug fixes.
+- TMAN-3817: Added notification property to SNMPManager object. New cmdlet:
+    Set-PfaSnmpManagerNotification
+- Added -Filter parameter to cmdlets that return multiple objects to enable server side filtering. See new help topic about_Purity_Filtering.
+- Added the following new cmdlets related to Pod and sync-rep management
+    Add-PfaArrayToPod
+    Copy-PfaPod
+    Get-PfaAllPodFootprint
+    Get-PfaAllPodMediator
+    Get-PfaAllPodSpaceHistory
+    Get-PfaAllPodSpaces
+    Get-PfaNamedPodFootprint
+    Get-PfaNamedPodMediator
+    Get-PfaNamedPodSpace
+    Get-PfaNamedPodSpaceHistory
+    Get-PfaNamedPods
+    Get-PfaPendingDeletePods
+    Get-PfaPendingPodFootprint
+    Get-PfaPendingPodMediator
+    Get-PfaPendingPodSpace
+    Get-PfaPod
+    Get-PfaPods
+    New-PfaPod
+    Remove-PfaArrayFromPod
+    Remove-PfaPod
+    Rename-PfaPod
+    Restore-PfaPod
+- Added the following cmdlets to support named certificate management.
+    Get-PfaNamedCertificate
+    Get-PfaNamedCertificateAttribute
+    Get-PfaNamedCertificateAttributes
+    Import-PfaNamedCertificate
+    Remove-PfaNamedCertificate
+    New-PfaNamedCertificateImport
+    New-PfaNamedSelfSignedCertificate
+-  Added the following cmdlets to support reading mirrored IO statistics.   
+    Get-PfaAllHostGroupIOMetricsMirrored
+    Get-PfaAllHostIOMetricsMirrored
+    Get-PfaAllPodIOMetricsMirrored
+    Get-PfaAllVolumeIOMetricsMirrored
+    Get-PfaArrayIOMetricsMirrored
+    Get-PfaHostGroupIOMetricsMirrored
+    Get-PfaHostIOMetricsMirrored
+    Get-PfaPodIOMetricsMirrored
+    Get-PfaVolumeIOMetricsMirrored
+- Added the following cmdlets to support KMIP.    
+    Get-PfaKmip
+    Get-PfaKmips
+    New-PfaKmip
+    Remove-PfaKmip
+    Test-PfaKmip
+    Update-PfaKmip
+ - Added the following cmdlets to support Purity //Run apps
+    Get-PfaPureAppAttributes
+    Get-PfaPureAppsAttributes
+- Added the following cmdlets to support volume groups and vvols.
+    Get-PfaAllVolumeGroupIOMetrics
+    Get-PfaAllVolumeGroupIOMetricsByTimeRange
+    Get-PfaAllVolumeGroupsIOMetricsAverage
+    Get-PfaAllVolumeGroupsIOMetricsTotal
+    Get-PfaVolumeGroupIOMetrics
+    Get-PfaVolumeGroupIOMetricsAverage
+    Get-PfaVolumeGroupIOMetricsByTimeRange
+    Get-PfaVolumeGroupSpaceMetrics
+    Get-PfaVolumeGroupSpaceMetrics
+    Get-PfaNamedVolumeGroupsIOMetricsByTimeRange
+    Get-PfaNamedVolumeGroups
+    Get-PfaPendingDeleteVolumeGroups
+    Get-PfaProtocolEndpointVolumes
+    Get-PfaProtocolEndpointVolume
+    Get-PfaVolumeGroups
+    Get-PfaVolumeGroup
+    New-PfaHostGroupProtocolEndpointVolumeConnection
+    New-PfaHostProtocolEndpointVolumeConnection
+    New-PfaProtocolEndpointVolume
+    New-PfaVolumeGroup    
+    Remove-PfaVolumeGroup
+    Restore-PfaVolumeGroup
+- Added the following cmdlets to support remote host/hostgroup/volume operations
+    Get-PfaRemoteHost
+    Get-PfaRemoteHostGroup
+    Get-PfaRemoteHostGroupVolumeConnections
+    Get-PfaRemoteHostGroups
+    Get-PfaRemoteHosts
+    Get-PfaRemoteVolumeHostConnections
+    Get-PfaRemoteVolumeHostGroupConnections
+    Get-PfaVolumeConnection            
+Added the following cmdlets:
+    Get-PfaArrayTCPConnection
+Bug fixes and cmdlets to support REST 1.7
+- Fixed Get-PfaProtectiongGroupVolumeSnapshot to work with REST 1.2 - REST 1.7. It still doesn't work with REST 1.4 (see KNOWN ISSUES above.)
+- Fixed bug where cmdlets were ignoring -ErrorAction.
+- Added mode (primary/secondary) property on the controller object returned by Get-PfaControllers.
+- Added cmdlets Get-PfaAllVolumeIOMetricsByTimeRange (Lists historical IO metrics for all volumes for a specified range) and Get-PfaNamedVolumesIOMetricsByTimeRange (Lists historical IO metrics for specified volumes for a specified range.)
+- Add Get-PfaProtectionGroupRetentions (retrieve snapshot replication retention policy for all protection groups.)
+- Add Get-PfaVolumeSnapshot (retrieve a particular snapshot by name.)
+- Set-PfaProtectionGroupRetention should have optional params, so that the user can change one property at a time and doesn't have to specify all properties.
+- Added Get cmdlets that support filtering by names. The names parameter accepts a single name or a comma-separated list for multiple values. The names parameter also accepts an asterisk ( * ) as a wildcard character.
+    Get-PfaNamedVolumes
+    Get-PfaNamedProtectionGroups
+    Get-PfaNamedHosts
+    Get-PfaNamedHostGroups
 
 RELEASE 1.7
 
