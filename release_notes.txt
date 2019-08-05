@@ -1,4 +1,4 @@
-Pure Storage PowerShell SDK 1.13.0 Release Notes
+Pure Storage PowerShell SDK 1.16.0 Release Notes
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
@@ -6,7 +6,7 @@ RELEASE COMPATIBILITY
 
 This release requires PowerShell 3.0 or higher.
 This release requires .NET 4.5.
-This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.13 inclusive.
+This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.16 inclusive.
 This release requires a 64-bit operating system. 
 
 INSTALLATION AND UNINSTALLATION
@@ -19,12 +19,132 @@ KNOWN ISSUES
 
 Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
 
+RELEASE 1.16.0
+Release 1.16.0 adds the following changes to Release 1.13.2
+- Added support for REST 1.14, 1.15 and 1.16. The following features are implemented.
+
+- Added support for NFS and S3 snapshot offload 
+   Connect-PfaOffloadNFSTarget
+   Connect-PfaOffloadS3Target
+   Disconnect-PfaOffloadNFSTarget
+   Disconnect-PfaOffloadS3Target
+   Get-PfaAllProtectionGroupOffloadSnapshot
+   Get-PfaAllVolumeOffloadSnapshot
+   Get-PfaOffloadNFSTarget
+   Get-PfaOffloadS3Target
+   Get-PfaOffloadSnapshot
+   Get-PfaOffloadTarget
+   Get-PfaProtectionGroupOffloadSnapshot
+   Restore-PfaAllVolumeOffloadSnapshot
+ 
+- Added support for how directory service roles are modified
+   Get-PfaDirectoryServiceRole
+   New-PfaDirectoryServiceRole
+ 
+- Added support for maximum login attempts and user lockout
+   Get-PfaAdminSetting
+   Get-PfaAllLockedUser
+   Get-PfaLockedUser
+   Set-PfaAdminSetting
+   Unlock-PfaUser
+
+- Added support for host NQN's
+   Add-PfaHostNqn
+   Remove-PfaHostNqn
+   Set-PfaHostNqn
+
+- Added support for creating and deleting local user
+   New-PfaLocalUser
+   Remove-PfaLocalUser
+
+- Added support to view and manage software applications on Purity Array
+   New-PfaSoftware
+   Get-PfaSoftware
+   Disable-PfaSoftware
+   Enable-PfaSoftware
+   Remove-PfaSoftware
+   Get-PfaSoftwareAttribute
+
+- Added ability to view pods on remote array
+   Get-PfaAllRemotePod
+   Get-PfaRemotePod
+
+- Added the ability to list latency values when viewing performance data.
+   Get-PfaAllHostGroupIOLatencyMetrics
+   Get-PfaAllHostGroupIOLatencyMetricsMirrored
+   Get-PfaAllHostGroupIOLatencyMetricsTotal
+   Get-PfaAllHostIOLatencyMetrics
+   Get-PfaAllHostIOLatencyMetricsMirrored
+   Get-PfaAllHostIOLatencyMetricsTotal
+   Get-PfaAllPodIOLatencyMetricsMirrored
+   Get-PfaAllVolumeGroupIOLatencyMetrics
+   Get-PfaAllVolumeGroupIOLatencyMetricsByTimeRange
+   Get-PfaAllVolumeGroupsIOLatencyMetricsTotal
+   Get-PfaAllVolumeIOLatencyMetrics
+   Get-PfaAllVolumeIOLatencyMetricsByTimeRange
+   Get-PfaAllVolumeIOLatencyMetricsTotal
+   Get-PfaArrayIOLatencyMetrics
+   Get-PfaHostGroupIOLatencyMetrics
+   Get-PfaHostGroupIOLatencyMetricsMirrored
+   Get-PfaHostIOLatencyMetrics
+   Get-PfaHostIOLatencyMetricsMirrored
+   Get-PfaNamedVolumeGroupsIOLatencyMetricsByTimeRange
+   Get-PfaNamedVolumesIOLatencyMetricsByTimeRange
+   Get-PfaPodIOLatencyMetricsMirrored
+   Get-PfaVolumeGroupIOLatencyMetrics
+   Get-PfaVolumeGroupIOLatencyMetricsByTimeRange
+   Get-PfaVolumeIOLatencyMetrics
+   Get-PfaVolumeIOLatencyMetricsByTimeRange
+
+- Added the following new cmdlets:
+   Set-PfaHost
+   Set-PfaPod
+   Set-PfaVolumeBandwidthLimit
+   Set-PfaSmtpManagerAttribute
+   Get-PfaSmtpManagerAttribute
+
+- Updated the following cmdlets:
+   Get-PfaHost
+   Get-PfaHosts
+   Get-PfaPod
+   Get-PfaPods
+   Get-PfaVolume
+   Get-PfaVolumes
+   New-PfaHost
+   New-PfaPod
+   New-PfaVolume
+   Remove-PfaProtectionGroupOrSnapshot
+   Restore-PfaDestroyedProtectionGroup
+
+- The following cmdlets starting REST 1.16 do not return "san_usec_per_read_op", "san_usec_per_write_op". These values are part of new cmdlet mentioned above *IOLatency*.
+   Get-PfaAllHostIOMetrics
+   Get-PfaHostIOMetricsAverage
+   Get-PfaAllHostIOMetricsTotal
+   Get-PfaArrayIOMetrics
+   Get-PfaArrayIOMetricsAverage
+   Get-PfaAllVolumeIOMetricsByTimeRange
+   Get-PfaNamedVolumesIOMetricsByTimeRange
+   Get-PfaVolumeIOMetrics
+   Get-PfaVolumeIOMetricsByTimeRange
+   Get-PfaAllVolumeIOMetric
+
+RELEASE 1.13.2
+Release 1.13.2 adds the following changes to Release 1.13.1
+- Added New-PfaNamedCertificateSigningRequest that applies to REST 1.12 onwards.
+- Increased default http timeout from 5 seconds to 30 seconds.
+- Fixed bug with New-PfaCLICommand where it was not honoring TimeOutInMilliSeconds parameter
+- Ensured that certificate related cmdlets (eg Import-PfaCertificate) that don't work with REST 1.12+ return a helpful "Not Supported in REST API x" error. 
+
+RELEASE 1.13.1
+Release 1.13.1 adds the following changes to Release 1.13.0
+- Fixed bug where Get-PfaArrayAttributes was interpreting Purity version string as a date
+
 RELEASE 1.13.0
 
 Release 1.13.0 adds the following changes to Release 1.7
 
 Support for REST 1.12 and REST 1.13, bug fixes.
-- TMAN-3817: Added notification property to SNMPManager object. New cmdlet:
+- Added notification property to SNMPManager object. New cmdlet:
     Set-PfaSnmpManagerNotification
 - Added -Filter parameter to cmdlets that return multiple objects to enable server side filtering. See new help topic about_Purity_Filtering.
 - Added the following new cmdlets related to Pod and sync-rep management
