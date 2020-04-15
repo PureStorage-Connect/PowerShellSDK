@@ -1,28 +1,69 @@
-Pure Storage PowerShell SDK 1.16.0 Release Notes
-
+Pure Storage PowerShell SDK 1.17.0 Release Notes
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
-
 RELEASE COMPATIBILITY
-
 This release requires PowerShell 3.0 or higher.
 This release requires .NET 4.5.
-This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.16 inclusive.
+This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.17 inclusive.
 This release requires a 64-bit operating system. 
-
 INSTALLATION AND UNINSTALLATION
-
 To install the PowerShell SDK, extract and run PurePowerShellSDKInstaller.msi, and follow the instructions. Administrator privilege is required to install. To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell prompt. The newly installed cmdlets should be listed. The PowerShell SDK can be uninstalled from "Programs and Features" of the Control Panel.
-
 The PowerShell SDK can also be installed using the PowerShell Gallery. See https://www.powershellgallery.com/ for details on how to discover resources on the PowerShell Gallery.
-
 KNOWN ISSUES
-
 Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
-
+The following Cmdlets remove the "-CaCertificate" parameter, see the new "New-PfaKMIP" cmdlet.
+    Import-PfaNamedCertificate 
+    New-PfaNamedCertificate
+Get-PfaNamedCertificate no longer accept -ExportCaCertificate parameter.
+RELEASE 1.17.0
+Release 1.17.0 adds the following changes to Release 1.16.0
+- Added support for the following features.
+- Added support for Maintenance Window.
+    New-PfaMaintenanceWindow
+    Get-PfaMaintenanceWindow
+    Remove-PfaMaintenanceWindow
+- Added CaCertificate to New-PfaKMIP command-let.
+- Added support for Azure Offload.
+    Connect-PfaOffloadAzureTarget
+    Get-PfaOffloadAzureTarget
+    Get-PfaAllOffloadAzureTarget
+    Disconnect-PfaOffloadAzureTarget
+- Added support for EULA.
+    Get-PfaArrayEula
+    Set-PfaArrayEulaAccept
+- Added support for Network Interface metrics.
+    Get-PfaNetworkInterfaceMetrics
+    Get-PfaNetworkInterfaceMetricsError
+    Get-PfaAllNetworkInterfaceMetrics
+    Get-PfaAllNetworkInterfaceMetricsError
+    Get-PfaAllNetworkInterfaceMetricsErrorTotal
+    Get-PfaAllNetworkInterfaceMetricsTotal
+- Added support for POD metrics.
+    Get-PfaAllPodSpaceMetricsTotal
+- Added support for Protection Group replication bandwidth
+    Get-PfaAllProtectionGroupReplicationBandwidth
+    Get-PfaAllProtectionGroupReplicationBandwidthByTimeRange
+    Get-PfaProtectionGroupReplicationBandwidth
+    Get-PfaProtectionGroupReplicationBandwidthByTimeRange
+- Added support for reading volume host encryption key status
+    Get-PfaVolumeHostEncryptionKeyStatus
+    Get-PfaAllVolumeHostEncryptionKeyStatus
+- Added support for reading volume space metrics.
+    Get-PfaAllVolumeSpaceMetricsTotal
+    Get-PfaAllVolumeTotal
+- Added support for reading volume group bandwidth
+    Set-PfaVolumeGroupBandwidthLimit
+- Added support for volume and volume group IOPS limit
+    Set-PfaVolumeGroupIOPSLimit
+    Set-PfaVolumeIOPSLimit
+- Added support for VNC support for software app 
+    Disable-PfaSoftwareVNC
+    Enable-PfaSoftwareVNC
+- Added support for reading the software app nodes.
+    Get-PfaAllSoftwareNode
+    Get-PfaSoftwareNode
 RELEASE 1.16.0
 Release 1.16.0 adds the following changes to Release 1.13.2
 - Added support for REST 1.14, 1.15 and 1.16. The following features are implemented.
-
 - Added support for NFS and S3 snapshot offload 
    Connect-PfaOffloadNFSTarget
    Connect-PfaOffloadS3Target
@@ -47,16 +88,13 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    Get-PfaLockedUser
    Set-PfaAdminSetting
    Unlock-PfaUser
-
 - Added support for host NQN's
    Add-PfaHostNqn
    Remove-PfaHostNqn
    Set-PfaHostNqn
-
 - Added support for creating and deleting local user
    New-PfaLocalUser
    Remove-PfaLocalUser
-
 - Added support to view and manage software applications on Purity Array
    New-PfaSoftware
    Get-PfaSoftware
@@ -64,11 +102,9 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    Enable-PfaSoftware
    Remove-PfaSoftware
    Get-PfaSoftwareAttribute
-
 - Added ability to view pods on remote array
    Get-PfaAllRemotePod
    Get-PfaRemotePod
-
 - Added the ability to list latency values when viewing performance data.
    Get-PfaAllHostGroupIOLatencyMetrics
    Get-PfaAllHostGroupIOLatencyMetricsMirrored
@@ -95,14 +131,12 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    Get-PfaVolumeGroupIOLatencyMetricsByTimeRange
    Get-PfaVolumeIOLatencyMetrics
    Get-PfaVolumeIOLatencyMetricsByTimeRange
-
 - Added the following new cmdlets:
    Set-PfaHost
    Set-PfaPod
    Set-PfaVolumeBandwidthLimit
    Set-PfaSmtpManagerAttribute
    Get-PfaSmtpManagerAttribute
-
 - Updated the following cmdlets:
    Get-PfaHost
    Get-PfaHosts
@@ -115,7 +149,6 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    New-PfaVolume
    Remove-PfaProtectionGroupOrSnapshot
    Restore-PfaDestroyedProtectionGroup
-
 - The following cmdlets starting REST 1.16 do not return "san_usec_per_read_op", "san_usec_per_write_op". These values are part of new cmdlet mentioned above *IOLatency*.
    Get-PfaAllHostIOMetrics
    Get-PfaHostIOMetricsAverage
@@ -127,22 +160,17 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    Get-PfaVolumeIOMetrics
    Get-PfaVolumeIOMetricsByTimeRange
    Get-PfaAllVolumeIOMetric
-
 RELEASE 1.13.2
 Release 1.13.2 adds the following changes to Release 1.13.1
 - Added New-PfaNamedCertificateSigningRequest that applies to REST 1.12 onwards.
 - Increased default http timeout from 5 seconds to 30 seconds.
 - Fixed bug with New-PfaCLICommand where it was not honoring TimeOutInMilliSeconds parameter
 - Ensured that certificate related cmdlets (eg Import-PfaCertificate) that don't work with REST 1.12+ return a helpful "Not Supported in REST API x" error. 
-
 RELEASE 1.13.1
 Release 1.13.1 adds the following changes to Release 1.13.0
 - Fixed bug where Get-PfaArrayAttributes was interpreting Purity version string as a date
-
 RELEASE 1.13.0
-
 Release 1.13.0 adds the following changes to Release 1.7
-
 Support for REST 1.12 and REST 1.13, bug fixes.
 - Added notification property to SNMPManager object. New cmdlet:
     Set-PfaSnmpManagerNotification
@@ -245,14 +273,10 @@ Bug fixes and cmdlets to support REST 1.7
     Get-PfaNamedProtectionGroups
     Get-PfaNamedHosts
     Get-PfaNamedHostGroups
-
 RELEASE 1.7
-
 ADDITIONS
 Support for Pure Storage arrays with IPv6 addresses
-
 RELEASE 1.6
-
 ADDITIONS
 The last release for the Pure Storage PowerShell SDK was 1.5
  
@@ -263,12 +287,10 @@ The following cmdlets have been added since the last release to support REST 1.5
 - Added Get-PfaHostIOMetrics.
 - Added Get-PfaAllHostGroupIOMetrics.
 - Added Get-PfaHostGroupIOMetrics.
-
 The following cmdlets have been added since the last release to support REST 1.6
 - Added Get-PfaArraySpaceMetricsByTimeRange.
 - Added Get-PfaAllVolumeSpaceMetricsByTimeRange.
 - Added Get-PfaVolumeSpaceMetricsByTimeRange.
-
 The following cmdlets have been added since the last release to support REST 1.7
 - Added Get-PfaArrayIOMetricsAverage.
 - Added Get-PfaAllHostIOMetricsTotal.
@@ -280,7 +302,6 @@ The following cmdlets have been added since the last release to support REST 1.7
 - Added Get-PfaAllVolumeIOMetricsAverage.
 - Added Get-PfaAllVolumeIOMetricsTotal.
 - Added Get-PfaVolumeIOMetricsAverage.
-
 Other additions:
 - Added New-PfaCLICommand to be able to run any CLI command on the FlashArray
 - Added Get-PfaVolumeIOMetricsByTimeRange (old name was Get-PfaVolumeIOMetrics - see section CHANGES)
@@ -290,7 +311,6 @@ The following cmdlets related to Purity's integration with Active Directory to p
 - Added Set-PfaDirectoryServiceStatus to enable/disable Active Directory integration.
 - Added Set-PfaDirectoryServiceAuthenticationStatus to enable/disable server authenticity enforcement using configured CA certificate.
 - Added Set-PfaDirectoryServiceGroupBase to set base OU for ArrayAdmin/StorageAdmin/Readonly security groups.
-
 CHANGES
 1) Removed CheckPeer and Enabled switch parameters from Set-PfaDirectoryServiceConfiguration - the functionality is provided by new cmdlets Set-PfaDirectoryServviceAuthenticationStatus and Set-PfaDirectoryServiceStatus.
 2) In 1.5 version of the SDK, Get-PfaVolumeIOMetrics would get historical performance data for the specified volume. This has been renamed to Get-PfaVolumeIOMetricsByTimeRange.
@@ -298,20 +318,15 @@ CHANGES
 3) In 1.5 version of the SDK, Get-PfaAllVolumeIOMetrics would get IO metrics for a specific volume - this has been renamed to Get-PfaVolumeIOmetrics (see change#2 above)
 4) Fixed bug with Get-PfaInitiatorPorts where it was only returning array ports.
 5) Added the ability to connect to an array using API token (see help for New-PfaArray)
-
 PERFORMANCE TESTING
-
 No performance testing was done for this release.
-
 OPEN SOURCE LICENSES
-
 Json.NET:
 The MIT License (MIT)
 Copyright (c) 2007 James Newton-King
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 SSH.NET:
 The MIT License (MIT)
 Permission is hereby granted, free of charge, to any person obtaining a copy
