@@ -10,7 +10,10 @@ The Pure Storage PowerShell SDK provides integration with the Purity Operating E
 * [Pure Storage Support -- Programming Interfaces > PowerShell](https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell)
 * [Quick Start Guide PowerShell SDK Examples (ZIP)](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/SDK-Examples.zip)
 
-### :+1: LATEST RELEASE
+### THE DOWNLOAD OF THE NEW SDK VERSION 2 IS LOCATED HERE
+* [Github Repository for SDK version 2](https://www.github.com/PureStorage-Connect/PowerShellSDK2)
+
+### LATEST RELEASE SDK 1.x
 * [v1.17.3](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.3)
 
 ### :wave: HISTORY
