@@ -1,19 +1,39 @@
-Pure Storage PowerShell SDK 1.17.0 Release Notes
+PURE STORAGE POWERSHELL SDK 1.17.0 RELEASE NOTES
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
-RELEASE COMPATIBILITY
-This release requires PowerShell 3.0 or higher.
-This release requires .NET 4.5.
-This release is compatible with Purity FlashArrays that support Pure Storage REST API 1.0 to 1.17 inclusive.
-This release requires a 64-bit operating system. 
-INSTALLATION AND UNINSTALLATION
-To install the PowerShell SDK, extract and run PurePowerShellSDKInstaller.msi, and follow the instructions. Administrator privilege is required to install. To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell prompt. The newly installed cmdlets should be listed. The PowerShell SDK can be uninstalled from "Programs and Features" of the Control Panel.
-The PowerShell SDK can also be installed using the PowerShell Gallery. See https://www.powershellgallery.com/ for details on how to discover resources on the PowerShell Gallery.
-KNOWN ISSUES
-Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
-The following Cmdlets remove the "-CaCertificate" parameter, see the new "New-PfaKMIP" cmdlet.
+There are currently two releases of the SDK, version 1 for Purity REST API version 1.0 to 1.17, and version 2, for Purity REST API version 2.0 and later.
+
+// RELEASE COMPATIBILITY
+- This release requires PowerShell versions 3.0 to 5.1.
+- This release requires .NET Framework 4.5.
+- This release is compatible with FlashArrays that support Pure Storage REST API 1.0 to 1.17 inclusive. You can determine what API versions are supported on an array by using a web browser to go to this URL - https://<FQDN or IP Address of array>/api/api_version.
+- This release requires a 64-bit Windows operating system that is compatible with the required PowerShell versions noted previously. 
+
+// INSTALLATION AND UNINSTALLATION
+- Full installation instructions are available from this link - https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell/Pure_Storage_PowerShell_SDK
+- An Administrator privilege is required to install.
+- To install the PowerShell SDK, there are two options for the method of installation. The recommened method is to use the PowerShell Gallery by using the Install-Module cmdlet. You can also install via a Windows MSI installer, where you 
+extract and run the PurePowerShellSDKInstaller.msi and follow the instructions.
+- To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell prompt and verify the release version. 
+
+- If you used the PowerShell Gallery installation, you uninstall the SDK by using the Uninstall-Module cmdlet. For MSI installations, you can use the "Programs and Features" of the Control Panel.
+
+// KNOWN ISSUES
+- Get-PfaProtectionGroupVolumeSnapshots does not work if the array is connected using REST API 1.4.
+- The following Cmdlets remove the "-CaCertificate" parameter. See the new "New-PfaKMIP" cmdlet.
     Import-PfaNamedCertificate 
     New-PfaNamedCertificate
-Get-PfaNamedCertificate no longer accept -ExportCaCertificate parameter.
+- Get-PfaNamedCertificate no longer accepts the -ExportCaCertificate parameter.
+
+// RESOURCES
+- Join the Pure Storage Code Slack Team and talk allthings APIs and SDKs by using this self-invitation link - https://codeinvite.purestorage.com 
+- Our https://code.purestorage.com site links to all available API and SDK information on Github and Support.
+
+// RELEASE INFORMATION
+RELEASE 1.17.11
+Release 1.17.11 adds the following changes to Release 1.17.0
+- Added DisableLoggingToArray to New-PfaArray and New-PfaCLICommand to disabled phone home logging to the array (and the associated thread) for this connection.
+- Fixed resource consumption issue in a New-PfaCLICommand connection that could cause the number of threads in a process to continually increase.
+
 RELEASE 1.17.0
 Release 1.17.0 adds the following changes to Release 1.16.0
 - Added support for the following features.
@@ -61,6 +81,7 @@ Release 1.17.0 adds the following changes to Release 1.16.0
 - Added support for reading the software app nodes.
     Get-PfaAllSoftwareNode
     Get-PfaSoftwareNode
+
 RELEASE 1.16.0
 Release 1.16.0 adds the following changes to Release 1.13.2
 - Added support for REST 1.14, 1.15 and 1.16. The following features are implemented.
@@ -160,15 +181,18 @@ Release 1.16.0 adds the following changes to Release 1.13.2
    Get-PfaVolumeIOMetrics
    Get-PfaVolumeIOMetricsByTimeRange
    Get-PfaAllVolumeIOMetric
+
 RELEASE 1.13.2
 Release 1.13.2 adds the following changes to Release 1.13.1
 - Added New-PfaNamedCertificateSigningRequest that applies to REST 1.12 onwards.
 - Increased default http timeout from 5 seconds to 30 seconds.
 - Fixed bug with New-PfaCLICommand where it was not honoring TimeOutInMilliSeconds parameter
 - Ensured that certificate related cmdlets (eg Import-PfaCertificate) that don't work with REST 1.12+ return a helpful "Not Supported in REST API x" error. 
+
 RELEASE 1.13.1
 Release 1.13.1 adds the following changes to Release 1.13.0
 - Fixed bug where Get-PfaArrayAttributes was interpreting Purity version string as a date
+
 RELEASE 1.13.0
 Release 1.13.0 adds the following changes to Release 1.7
 Support for REST 1.12 and REST 1.13, bug fixes.
@@ -273,13 +297,11 @@ Bug fixes and cmdlets to support REST 1.7
     Get-PfaNamedProtectionGroups
     Get-PfaNamedHosts
     Get-PfaNamedHostGroups
+
 RELEASE 1.7
-ADDITIONS
-Support for Pure Storage arrays with IPv6 addresses
+- Added support for Pure Storage arrays with IPv6 addresses
+
 RELEASE 1.6
-ADDITIONS
-The last release for the Pure Storage PowerShell SDK was 1.5
- 
 The following cmdlets have been added since the last release to support REST 1.5
 - Added Update-PfaArrayConnectionsThrottlingInformation.
 - Added Get-PfaArrayConnectionsThrottlingInformation.
@@ -318,15 +340,19 @@ CHANGES
 3) In 1.5 version of the SDK, Get-PfaAllVolumeIOMetrics would get IO metrics for a specific volume - this has been renamed to Get-PfaVolumeIOmetrics (see change#2 above)
 4) Fixed bug with Get-PfaInitiatorPorts where it was only returning array ports.
 5) Added the ability to connect to an array using API token (see help for New-PfaArray)
-PERFORMANCE TESTING
+
+
+// PERFORMANCE TESTING
 No performance testing was done for this release.
-OPEN SOURCE LICENSES
+
+// OPEN SOURCE LICENSES
 Json.NET:
 The MIT License (MIT)
 Copyright (c) 2007 James Newton-King
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 SSH.NET:
 The MIT License (MIT)
 Permission is hereby granted, free of charge, to any person obtaining a copy
