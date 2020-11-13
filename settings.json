@@ -3,6 +3,6 @@
     "name": "FlashArray PowerShell SDK v1",
     "filter": "devops microsoft",
     "image": "http://code.purestorage.com/images/3_%20Powershell%20scripts.png",
-    "featured": 0,
+    "featured": 1,
     "priority": 1
 }
