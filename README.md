@@ -29,9 +29,9 @@ This repository contains the standalone MSI installer.
 * [v1.17.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.16.0)
 
 ### :date: HISTORY
-* [v1.17.11](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.11)
-* [v1.16](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.16)
-* [v1.13](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.13)
+* [v1.17.11.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.11)
+* [v1.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.16)
+* [v1.13.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.13)
 * [v1.7.4](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.7.4.0)
 * [v1.6.6](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.6.6.0)
 * [v1.5.5](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.5.0)
