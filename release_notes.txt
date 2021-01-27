@@ -1,4 +1,4 @@
-PURE STORAGE POWERSHELL SDK 1.17.0 RELEASE NOTES
+PURE STORAGE POWERSHELL SDK 1.17 RELEASE NOTES
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 There are currently two releases of the SDK, version 1 for Purity REST API version 1.0 to 1.17, and version 2, for Purity REST API version 2.0 and later.
 
@@ -29,13 +29,17 @@ extract and run the PurePowerShellSDKInstaller.msi and follow the instructions.
 - Our https://code.purestorage.com site links to all available API and SDK information on Github and Support.
 
 // RELEASE INFORMATION
-RELEASE 1.17.11
-Release 1.17.11 adds the following changes to Release 1.17.0
+RELEASE 1.17.16.0
+Release 1.17.16.0 adds the following changes to Release 1.17.11.0
+- Fix for possible race condition when using specific cmdlets.
+
+RELEASE 1.17.11.0
+Release 1.17.11 adds the following changes to Release 1.17.0.0
 - Added DisableLoggingToArray to New-PfaArray and New-PfaCLICommand to disabled phone home logging to the array (and the associated thread) for this connection.
 - Fixed resource consumption issue in a New-PfaCLICommand connection that could cause the number of threads in a process to continually increase.
 
-RELEASE 1.17.0
-Release 1.17.0 adds the following changes to Release 1.16.0
+RELEASE 1.17.0.0
+Release 1.17.0.0 adds the following changes to Release 1.16.0
 - Added support for the following features.
 - Added support for Maintenance Window.
     New-PfaMaintenanceWindow
