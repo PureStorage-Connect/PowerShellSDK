@@ -1,5 +1,5 @@
 
-# Pure Storage FlashArray PowerShell SDK 1 &nbsp;&nbsp;&nbsp;&nbsp; <img src="/images/pure_powershell_sdk.png">
+# Pure Storage FlashArray PowerShell SDK 1 &nbsp;&nbsp;&nbsp; <img src="/images/pure_powershell_sdk.png">
 
 The Pure Storage FlashArray PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
@@ -19,16 +19,16 @@ This repository contains the standalone MSI installer.
 :small_orange_diamond:  [Version 2 MSI Installation Package](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDKInstaller.msi)<br>
 :small_orange_diamond:   [Downloadable HTML Help File](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDK-Help.html)<br>
 :small_orange_diamond:  [Pure Storage Support -- Programming Interfaces > PowerShell](https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell)<br>
-:small_orange_diamond:  [Quick Start Guide PowerShell SDK Examples (ZIP)](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/SDK-Examples.zip)
+:small_orange_diamond:  [Quick Start Guide Script and Supplemental PowerShell SDK Examples](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/SDK-Examples.ps1)
 
 <!-- wp:separator -->
 <hr class="wp-block-separator"/>
 <!-- /wp:separator -->
 
-## :rocket: LATEST MSI RELEASE OF SDK 1.x
+## :rocket: LATEST MSI RELEASE OF SDK v1.x
 * [v1.17.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.16.0)
 
-### :date: HISTORY
+## :date: HISTORY
 * [v1.17.11.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.11)
 * [v1.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.16)
 * [v1.13.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.13)
@@ -49,12 +49,9 @@ This repository contains the standalone MSI installer.
 <!-- wp:separator -->
 <hr class="wp-block-separator"/>
 <!-- /wp:separator -->
-<p>:wrench: To report issues or request new features, please enter them here:</p>
+<p>:wrench: To report issues or request new features, please file an Issue.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p><a href="https://github.com/PureStorage-Connect/PureStoragePowerShellSDK/issues">https://github.com/PureStorage-Connect/PowerShellSDK/issues</a></p>
-<!-- /wp:paragraph -->
 <!-- wp:paragraph -->
 <p>:question: For questions,&nbsp;<a href="https://codeinvite.purestorage.com/">join our Pure Storage Code Slack</a>&nbsp;team! Check out the #pfa-powershell channel</p>
 <!-- /wp:paragraph -->
