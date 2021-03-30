@@ -158,6 +158,12 @@ $fa = new-pfaarray -endpoint x.x.x.x -username pureuser -ignorecertificateerror
     }
     return $volProtection
 
+# Retrieve Protection Group snapshot information
+$pgs = Get-Pfaprotectiongroups -array $fa | Select-Object name
+foreach ($pg in $pgs) {
+    Get-PfaProtectionGroupSnapshots -array $fa -Name $pg.name | Select-Object Name, created | Format-Table -AutoSize
+}
+
 # Configure syslog on multiple arrays
 $cred = Get-Credential
 $arrays = "x.x.x.x,x.x.x.x,x.x.x.x"
