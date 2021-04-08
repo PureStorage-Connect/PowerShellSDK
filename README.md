@@ -1,6 +1,8 @@
 
 # Pure Storage FlashArray PowerShell SDK 1 &nbsp;&nbsp;&nbsp; <img src="/images/pure_powershell_sdk.png">
 
+![GitHub all releases](https://img.shields.io/github/downloads/PureStorage-Connect/PowerShellSDK/total?color=orange&style=plastic)
+
 The Pure Storage FlashArray PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
 This is __version 1__ of the SDK. Version 2 can be found in this repository:<br>
