@@ -66,7 +66,7 @@ New-PfaProtectionGroupSnapshot -Array $FlashArray -Protectiongroupname 'TEST-PGR
 Get-PfaProtectionGroupSnapshots -Array $FlashArray -Name 'TEST-PGROUP'
 Get-PfaProtectionGroupSchedule -Array $FlashArray -ProtectionGroupName 'TEST-PGROUP'
 Set-PfaProtectionGroupSchedule -Array $FlashArray -SnapshotFrequencyInSeconds 21600 -GroupName 'TEST-PGROUP'
-Eable-PfaSnapshotSchedule -Array $FlashArray -Name 'TEST-PGROUP'
+Enable-PfaSnapshotSchedule -Array $FlashArray -Name 'TEST-PGROUP'
 
 $Volumes = @()
 ForEach($i in 1..10) { $Volumes += @("TEST-VOL$i") }
