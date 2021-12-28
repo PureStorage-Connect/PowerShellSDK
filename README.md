@@ -1,5 +1,5 @@
 
-#Pure Storage FlashArray PowerShell SDK version 1<img src="/images/pure_powershell_sdk.png" align="right">
+## Pure Storage FlashArray PowerShell SDK version 1<img src="/images/pure_powershell_sdk.png" align="right">
 
 ![GitHub all releases](https://img.shields.io/github/downloads/PureStorage-Connect/PowerShellSDK/total?color=orange&label=GitHub%20downloads&logo=powershell&style=plastic)  ![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PureStoragePowerShellSDK?color=orange&label=PSGallery%20downloads&logo=powershell&style=plastic)
 
@@ -48,19 +48,14 @@ This repository contains the standalone MSI installer in the Releases section.
 * v1.5.5
 * v1.5.4
 
-
-<!-- wp:separator -->
 <hr class="wp-block-separator"/>
-<!-- /wp:separator -->
 
 ### :tv: VIDEOS <br>
 [Check the Pure Storage YouTube channel for SDK v1 videos](https://www.youtube.com/user/purestorage)
-<!-- wp:paragraph -->
 
-<!-- wp:separator -->
 <hr class="wp-block-separator"/>
-<!-- /wp:separator -->
-### :wrench: RESOURCES
+
+### :wrench: RESOURCES <br>
 <p>To report issues or request new features, please file an Issue.</p>
 
 :question: For questions,&nbsp;<a href="https://codeinvite.purestorage.com/">join our Pure Storage Code Slack</a>&nbsp;team! Check out the #pfa-powershell channel</p>
