@@ -1,4 +1,4 @@
-// PURE STORAGE FLASHARRAY POWERSHELL SDK 1.19.37 RELEASE NOTES
+// PURE STORAGE FLASHARRAY POWERSHELL SDK 1.19.31 RELEASE NOTES
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 There are currently two releases of the SDK:
@@ -82,7 +82,8 @@ There are currently two releases of the SDK:
 	2. When using the Get-PfaAllDriveAttributes cmdlet with API version 1.0 to 1.19:
 		- "last_evac_completed" and "last_failure" results are only available with Purity versions 5.2.7, 5.3.0, and 5.3.2. This is due to a limitation in the Purity REST API.
 	3. The cmdlet Get-PfaBlockDifferences contains a parameter called -VolumeName. This parameter name is incorrect in that the cmdlet only works with snapshots, not volumes. This parameter has an alternative alias of -SnapshotName that can be used. Since this is an alias of the -VolumeName parameter, scripts that use that parameter will continue to execute without error.
-	X. Any previous known issues in the 1.17.16 release that have not been listed as corrected in the "Fixes" section above.
+	4. After the final release code was finalized, it was discovered that the cmdlet Remove-PfaReplicaLink should have been named Remove-PfaPodReplicaLink. This may be corrected in a minor release.
+	5. Any previous known issues in the 1.17.16 release that have not been listed as corrected in the "Fixes" section above.
 
 // RESOURCES.
 
