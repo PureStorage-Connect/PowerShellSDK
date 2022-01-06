@@ -1,28 +1,29 @@
 
-# Pure Storage FlashArray PowerShell SDK 1 &nbsp;&nbsp;&nbsp; <img src="/images/pure_powershell_sdk.png">
+## Pure Storage FlashArray PowerShell SDK version 1<img src="/images/pure_powershell_sdk.png" align="right">
 
 ![GitHub all releases](https://img.shields.io/github/downloads/PureStorage-Connect/PowerShellSDK/total?color=orange&label=GitHub%20downloads&logo=powershell&style=plastic)  ![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PureStoragePowerShellSDK?color=orange&label=PSGallery%20downloads&logo=powershell&style=plastic)
 
 The Pure Storage FlashArray PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
 
-This is __version 1__ of the SDK. Version 2 can be found in this repository:
-:octocat: [Github Repository for SDK version 2](https://www.github.com/PureStorage-Connect/PowerShellSDK2)
+This is __version 1__ of the SDK. This version support FlashArray Purity API versions 1.7 to 1.19.
+Version 2 of the SDK which supports FlashArray Purity API version 2.0 and later can be found in this repository :octocat: [SDK v2 Repository](https://www.github.com/PureStorage-Connect/PowerShellSDK2)
 
-## :floppy_disk: INSTALLATION
+### :floppy_disk: INSTALLATION
 
-There are two ways to install the SDK - via the PowerShell Gallery, or a standalone MSI installer. The recommended method for installation is to use the Install-Module cmdlet in PowerShell which will pull the latest release from the PowerShell Gallery.
+There are two ways to install the SDK:
+* __Recommended__ - Using Install-Module to pull the module from the PowerShell Gallery (PSGallery).
+* A standalone MSI installation package.
+The recommended method for installation is to use the Install-Module cmdlet in PowerShell which will pull the latest release from the PowerShell Gallery.
 
 ```powershell
 Install-Module -Name PureStoragePowerShellSDK
 ```
 
-This repository contains the standalone MSI installer.
+This repository contains the standalone MSI installer in the Releases section.
 
-## :point_down: DOWNLOADS
+### :point_down: DOWNLOADS
 
 :small_orange_diamond: [Version 1 MSI Installation Package](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDKInstaller.msi)
-
-:small_orange_diamond:  [Version 2 MSI Installation Package](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDKInstaller.msi)
 
 :small_orange_diamond:   [Downloadable HTML Help File](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDK-Help.html)
 
@@ -34,35 +35,30 @@ This repository contains the standalone MSI installer.
 <hr class="wp-block-separator"/>
 <!-- /wp:separator -->
 
-## :rocket: LATEST MSI RELEASE OF SDK v1.x
-* [v1.17.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.16.0)
+### :rocket: LATEST MSI RELEASE OF SDK v1.x
+* [v1.19.37.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.19.37.0)
 
-## :date: HISTORY
-* [v1.17.11.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.11)
-* [v1.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.16)
-* [v1.13.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.13)
-* [v1.7.4](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.7.4.0)
-* [v1.6.6](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.6.6.0)
-* [v1.5.5](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.5.0)
-* [v1.5.4](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.5.4.0)
+### :date: HISTORY
+* [v1.17.16.0](https://github.com/PureStorage-Connect/PowerShellSDK/releases/tag/v1.17.16)
+* v1.17.11.0
+* v1.16.0
+* v1.13.0
+* v1.7.4
+* v1.6.6
+* v1.5.5
+* v1.5.4
 
-
-<!-- wp:separator -->
 <hr class="wp-block-separator"/>
-<!-- /wp:separator -->
 
-## :tv: VIDEOS <br>
+### :tv: VIDEOS <br>
 [Check the Pure Storage YouTube channel for SDK v1 videos](https://www.youtube.com/user/purestorage)
-<!-- wp:paragraph -->
 
-<!-- wp:separator -->
 <hr class="wp-block-separator"/>
-<!-- /wp:separator -->
-<p>:wrench: To report issues or request new features, please file an Issue.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>:question: For questions,&nbsp;<a href="https://codeinvite.purestorage.com/">join our Pure Storage Code Slack</a>&nbsp;team! Check out the #pfa-powershell channel</p>
+### :wrench: RESOURCES <br>
+<p>To report issues or request new features, please file an Issue.</p>
+
+:question: For questions,&nbsp;<a href="https://codeinvite.purestorage.com/">join our Pure Storage Code Slack</a>&nbsp;team! Check out the #pfa-powershell channel</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

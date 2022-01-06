@@ -1,15 +1,15 @@
-﻿<#
-Example PowerShell scripts for the Pure Storage PowerShell SDK
-  This contains the step-by-step example script that follows along with the Quick Start Guide (https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell) as well as some further examples to help you create your own scripts using the SDK.
+﻿# Example PowerShell code, scripts, and functions for the Pure Storage PowerShell SDK v1
+<#
+  This file contains the example script that follows along with the Quick Start Guide (https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell) as well as some further examples to help you create your own scripts using the SDK.
 
-This script is AS-IS. No warranties expressed or implied by Pure Storage or the creator.
+These examples are presented AS-IS. These examples are not meant to be implemented as-is in a production environment. No warranties expressed or implied by Pure Storage or the contributors.
 
 : REVISION HISTORY
-:: 03.10.2021 - Added extended script and altered text for clarity. [mnelson]
-::
+:: 01.05.2022 - Added examples and clarified code.
+:: 03.10.2021 - Added extended script and altered text for clarity.
 
-: CONTRIBUTING AUTHORS
-:: Barkz, Mike Nelson, Julian Cates, Robert Quimbey --  @purestorage.com
+: CONTRIBUTORS
+:: Barkz, Mike Nelson, Julian Cates, Robert Quimbey --  @purestorage
 #>
 
 ###START
@@ -29,87 +29,108 @@ Get-Help New-PfaArray -Examples
 ## Connecting to the FlashArray
 ###############################
 $Creds = Get-Credential
-$FlashArray = New-PfaArray -EndPoint <IP/DNS> -Credentials $Creds -IgnoreCertificateError
-Get-PfaControllers -Array $FlashArray
-$Controllers = Get-PfaControllers –Array $FlashArray
+$fa = New-PfaArray -EndPoint 192.0.0.1 -Credentials $Creds -IgnoreCertificateError
+Get-PfaControllers -Array $fa
+$Controllers = Get-PfaControllers -Array $fa
 $Controllers
 
 ## Working with Volumes
 #######################
-New-PfaVolume –Array $FlashArray –VolumeName 'TEST-VOL' –Unit 'TB' –Size 2
-ForEach ($i in 2..10) { New-PfaVolume –Array $FlashArray –VolumeName “TEST-VOL$i” –Unit TB –Size 2 }
-Get-PfaVolume –Array $FlashArray –Name ‘TEST-VOL’ | Format-Table –Autosize
-Rename-PfaVolumeOrSnapshot –Array $FlashArray –NewName ‘TEST-VOL1’ –Name ‘TEST-VOL’
+New-PfaVolume -Array $fa -VolumeName "sdk-vol" -Unit "TB" -Size 2
+ForEach ($i in 2..10) { New-PfaVolume -Array $fa -VolumeName “sdk-vol$i” -Unit TB -Size 2 }
+Get-PfaVolume -Array $fa -Name "sdk-vol" | Format-Table -Autosize
+Rename-PfaVolumeOrSnapshot -Array $fa -NewName "sdk-vol1" -Name "sdk-vol"
 
 ## Volume and Host Connections
 ##############################
 $wwn=@('10:00:00:00:00:00:11:11','10:00:00:00:00:00:12:12')
-New-PfaHost –Array $FlashArray –Name ‘TEST-HOST1’ –WwnList $wwn
-New-PfaHostGroup -Array $FlashArray -Hosts 'TEST-HOST1' -Name 'TEST-HOSTGROUP'
-New-PfaHostVolumeConnection -Array $FlashArray -VolumeName 'TEST-VOL1' -HostName 'TEST-HOST1'
-New-PfaHostGroupVolumeConnection -Array $FlashArray -VolumeName 'TEST-VOL2' -HostGroupName 'TEST-HOSTGROUP'
+New-PfaHost -Array $fa -Name "sdk-host1" -WwnList $wwn
+New-PfaHostGroup -Array $fa -Hosts "sdk-host1" -Name "sdk-hostgroup"
+New-PfaHostVolumeConnection -Array $fa -VolumeName "sdk-vol1" -HostName "sdk-host1"
+New-PfaHostGroupVolumeConnection -Array $fa -VolumeName "sdk-vol2" -HostGroupName "sdk-hostgroup"
 
 ## FlashRecover Snapshots
 #########################
-New-PfaVolumeSnapshots -Array $FlashArray -Sources 'TEST-VOL1','TEST-VOL2' -Suffix 'EXAMPLE'
-New-PfaVolume -Array $FlashArray -Source 'TEST-VOL1.EXAMPLE' -VolumeName 'NEW-TEST-VOL1'
-New-PfaVolume -Array $FlashArray -Source 'TEST-VOL2.EXAMPLE' -VolumeName 'TEST-VOL2' –Overwrite
+New-PfaVolumeSnapshots -Array $fa -Sources "sdk-vol1","sdk-vol2" -Suffix "EXAMPLE"
+New-PfaVolume -Array $fa -Source "sdk-vol1.EXAMPLE" -VolumeName "new-sdk-vol1"
+New-PfaVolume -Array $fa -Source "sdk-vol2.EXAMPLE" -VolumeName "sdk-vol2" -Overwrite
 
 ## Protection Groups
 ####################
-New-PfaProtectionGroup -Array $FlashArray -Name ‘TEST-PGROUP’
+New-PfaProtectionGroup -Array $fa -Name "sdk-pgroup"
 $Volumes = @()
-ForEach($i in 1..10) { $Volumes += @("TEST-VOL$i") }
+ForEach($i in 1..10) { $Volumes += @("sdk-vol$i") }
 $Volumes
-Add-PfaVolumesToProtectionGroup -Array $FlashArray -VolumesToAdd $Volumes -Name 'TEST-PGROUP'
-New-PfaProtectionGroupSnapshot -Array $FlashArray -Protectiongroupname 'TEST-PGROUP' -Suffix 'EXAMPLE'
-Get-PfaProtectionGroupSnapshots -Array $FlashArray -Name 'TEST-PGROUP'
-Get-PfaProtectionGroupSchedule -Array $FlashArray -ProtectionGroupName 'TEST-PGROUP'
-Set-PfaProtectionGroupSchedule -Array $FlashArray -SnapshotFrequencyInSeconds 21600 -GroupName 'TEST-PGROUP'
-Enable-PfaSnapshotSchedule -Array $FlashArray -Name 'TEST-PGROUP'
+Add-PfaVolumesToProtectionGroup -Array $fa -VolumesToAdd $Volumes -Name "sdk-pgroup"
+New-PfaProtectionGroupSnapshot -Array $fa -Protectiongroupname "sdk-pgroup" -Suffix "EXAMPLE"
+Get-PfaProtectionGroupSnapshots -Array $fa -Name "sdk-pgroup"
+Get-PfaProtectionGroupSchedule -Array $fa -ProtectionGroupName "sdk-pgroup"
+Set-PfaProtectionGroupSchedule -Array $fa -SnapshotFrequencyInSeconds 21600 -GroupName "sdk-pgroup"
+Enable-PfaSnapshotSchedule -Array $fa -Name "sdk-pgroup"
 
 $Volumes = @()
-ForEach($i in 1..10) { $Volumes += @("TEST-VOL$i") }
+ForEach($i in 1..10) { $Volumes += @("sdk-vol$i") }
 $Volumes
-Remove-PfaVolumesFromProtectionGroup -Array $FlashArray -VolumesToRemove $Volumes -Name 'TEST-PGROUP'
+Remove-PfaVolumesFromProtectionGroup -Array $fa -VolumesToRemove $Volumes -Name "sdk-pgroup"
 
-Add-PfaHostsToProtectionGroup -Array $FlashArray -Name 'TEST-PGROUP' -HostsToAdd 'TEST-HOST1'
-New-PfaProtectionGroupSnapshot -Array $FlashArray -Protectiongroupname 'TEST-PGROUP'
-Remove-PfaHostsFromProtectionGroup -Array $FlashArray -HostsToRemove 'TEST-HOST1' -Name 'TEST-PGROUP'
+Add-PfaHostsToProtectionGroup -Array $fa -Name "sdk-pgroup" -HostsToAdd "sdk-host1"
+New-PfaProtectionGroupSnapshot -Array $fa -Protectiongroupname "sdk-pgroup"
+Remove-PfaHostsFromProtectionGroup -Array $fa -HostsToRemove "sdk-host1" -Name "sdk-pgroup"
 
-Add-PfaHostGroupsToProtectionGroup -Array $FlashArray -HostGroupsToAdd 'TEST-HOSTGROUP' -Name 'TEST-PGROUP'
-New-PfaProtectionGroupSnapshot -Array $FlashArray -Protectiongroupname 'TEST-PGROUP'
+Add-PfaHostGroupsToProtectionGroup -Array $fa -HostGroupsToAdd "sdk-hostgroup" -Name "sdk-pgroup"
+New-PfaProtectionGroupSnapshot -Array $fa -Protectiongroupname "sdk-pgroup"
 
 ## Monitor Metrics
 ##################
 Get-Command -Module PureStoragePowerShellSDK *Metric
-Get-PfaVolumeIOMetrics -Array $FlashArray -VolumeName ‘TEST-VOL1’ –TimeRange 1h | Format-Table –AutoSize
-Get-PfaVolumeIOMetrics -Array $FlashArray -VolumeName ‘TEST-VOL1’ –TimeRange 1h | Export-Csv -Path ‘C:\temp\test.csv’
+Get-PfaVolumeIOMetrics -Array $fa -VolumeName "sdk-vol1" -TimeRange 1h | Format-Table -AutoSize
+Get-PfaVolumeIOMetrics -Array $fa -VolumeName "sdk-vol1" -TimeRange 1h | Export-Csv -Path "C:\temp\test.csv"
 
 ## END QUICK START EXAMPLES
 
 ## Miscellaneous
 ################
 
-# Use an Invoke method to run a Purity CLI command
+## EXAMPLE
+# Run a Purity CLI command via SSH using a plaintext password converted to a SecureString
 $CommandText = "purevol create --size 10G volume-name-1"
-New-PfaCLICommand -EndPoint $array -Username $ArrayUsername -Password $ArrayPassword -CommandText $CommandText
+$Username = "pureuser"
+$Password = "pureuser"
+$SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
+New-PfaCliCommand -EndPoint 192.0.0.1 -UserName $Username -Password $SecurePassword -CommandText $CommandText
 
+## EXAMPLE
+# Alternative using Get-Credentials in-line
+$CommandText = "purepgroup snap --replicate-now sdk-pgroup"
+New-PfaCliCommand -EndPoint 192.0.0.1 -Credential (Get-Credential) -CommandText $CommandText
+
+## EXAMPLE
+# Create a PowerShell array of authenticated FlashArray objects and perform a command against all of the objects in series
+$fa @()
+$fa += New-PfaArray -EndPoint 192.0.0.1 -Credentials (Get-Credential) -IgnoreCertificateError
+$fa += New-PfaArray -EndPoint 192.0.0.2 -Credentials (Get-Credential) -IgnoreCertificateError
+$fa += New-PfaArray -EndPoint 192.0.0.3 -Credentials (Get-Credential) -IgnoreCertificateError
+$fa += New-PfaArray -EndPoint 192.0.0.4 -Credentials (Get-Credential) -IgnoreCertificateError
+Get-PfaVolumes -Array $fa
+
+## EXAMPLE
 # Get volumes created within the last 30 days
 $a = (Get-Date).AddDays(-30)
-Get-PfaVolumes -Array $Array | Where-Object { ($_.name -like 'Volume0*') -and ($_.created -ge $a) }
+Get-PfaVolumes -Array $Array | Where-Object { ($_.name -like "Volume0*") -and ($_.created -ge $a) }
 
-# Destroy (not eradicate) snapshots older than "x" Days
+## EXAMPLE
+# Destroy (not eradicate) snapshots older than "x" Days for all volumes
 $targetDate = (Get-Date).AddDays(-1 * $Days)
-$snaps = Get-PfaVolumeSnapshot -Array $FlashArray -SnapshotName * | Where-Object source -EQ $Volume
+$snaps = Get-PfaVolumeSnapshot -Array $fa -SnapshotName * | Where-Object source -EQ $Volume
 foreach ($snap in $snaps) {
     $snapDate = Get-Date($snap.created)
     if ($snapDate -lt $targetDate) {
-        Remove-PfaVolumeOrSnapshot -Array $FlashArray -Name $snap.name
+        Remove-PfaVolumeOrSnapshot -Array $fa -Name $snap.name
     }
 }
 
-# The above code put into a Function with command line parameters
+## EXAMPLE
+# The previous example code put into a Function with command line parameters
 Function Remove-SnapshotsByTime {
 Param (
         [Parameter(Mandatory = $true)][PSCredential]$Credential,
@@ -117,7 +138,7 @@ Param (
         [Parameter(Mandatory = $true)][String]$Volume,
         [Parameter(Mandatory = $true)][Int]$Days
     )
-    $fa = New-PfaArray -Credentials $Credential -Endpoint $Array -IgnoreCertificateError
+    $fa = New-PfaArray -Credentials $Credential -Endpoint 192.0.0.1 -IgnoreCertificateError
     $targetDate = (Get-Date).AddDays(-1 * $Days)
     $snaps = Get-PfaVolumeSnapshot -Array $fa -SnapshotName * | Where-Object source -EQ $Volume
     foreach ($snap in $snaps) {
@@ -128,9 +149,10 @@ Param (
     }
 }
 
-# Alternative method for destroy (not eradicate) snapshots older than "x" days
-$fa = new-pfaarray -endpoint x.x.x.x -username pureuser -ignorecertificateerror
-    $purevolume = "nameofvolume"
+## EXAMPLE
+# Alternative method for destroy (not eradicate) snapshots older than "x" days for volume "vol1"
+$fa = New-PfaArray -EndPoint 192.0.0.1 -Username pureuser -IgnoreCertificateError
+    $purevolume = "vol1"
     # Set number of days from today to retain
     $retention = (Get-Date).adddays(-10)
     $ListAllSnap = Get-PfaVolumeSnapshots -VolumeName $purevolume -Array $fa
@@ -144,6 +166,7 @@ $fa = new-pfaarray -endpoint x.x.x.x -username pureuser -ignorecertificateerror
         }
     }
 
+## EXAMPLE
 # Protection Group information
     $allVols = Get-PfaVolumes -Array $fa
     $volProtection = @()
@@ -158,25 +181,94 @@ $fa = new-pfaarray -endpoint x.x.x.x -username pureuser -ignorecertificateerror
     }
     return $volProtection
 
-# Retrieve Protection Group snapshot information
-$pgs = Get-Pfaprotectiongroups -array $fa | Select-Object name
+## EXAMPLE
+# Retrieve all Protection Group snapshot information
+$pgs = Get-PfaProtectionGroups -Array $fa | Select-Object name
 foreach ($pg in $pgs) {
-    Get-PfaProtectionGroupSnapshots -array $fa -Name $pg.name | Select-Object Name, created | Format-Table -AutoSize
+    Get-PfaProtectionGroupSnapshots -Array $fa -Name $pg.name | Select-Object Name, created | Format-Table -AutoSize
 }
 
-# Configure syslog on multiple arrays
+## EXAMPLE
+# Invoke REST API command to retrieve volumes
+Invoke-PfaRestCommand -EndPoint 192.0.0.1 -Method GET -Command "https://pure01.example.com/api/1.19/volume"
+
+## EXAMPLE
+# Invoke REST API command create a volume 10G in size on Array $array
+$command = "volume/sdk-vol1"
+$body = ' { "size": "10G" } '
+Invoke-PfaRestCommand -Array $fa -Method POST -Command $command -Body $body
+
+## EXAMPLE
+# Delete the volume created in the previous example
+$command = "volume/sdk-vol1"
+Invoke-PfaRestCommand -Array $fa -Method DELETE -Command $command
+
+## EXAMPLE
+# Eradicate the volume from the previous example
+$command = "volume/sdk-vol1?eradicate=true"
+Invoke-PfaRestCommand -Array $fa -Method DELETE -Command $command
+
+## EXAMPLE
+# Configure syslog server on multiple arrays
 $cred = Get-Credential
-$arrays = "x.x.x.x,x.x.x.x,x.x.x.x"
-$SysLogServer = "tcp://x.x.x.x:514"
+$arrays = "192.0.0.1,192.0.0.2,192.0.0.3"
+$SysLogServer = "tcp://192.0.0.100:514"
 Foreach ($array in $arrays) {
     $array = New-PfaArray -EndPoint $array -Credentials $cred -IgnoreCertificateError | Set-PfaSyslogServer -Array $array -SyslogServer $SyslogServer | Format-List
 }
-
-# Create a array-to-array replication connection
-$sourceArray = New-PfaArray -EndPoint "x.x.x.x" -IgnoreCertificateError -Credentials (Get-Credential)
-$targetArray = New-PfaArray -EndPoint "x.x.x.x" -IgnoreCertificateError -Credentials (Get-Credential)
+## EXAMPLE
+# Create an array-to-array replication connection
+$sourceArray = New-PfaArray -EndPoint 192.0.0.1 -IgnoreCertificateError -Credentials (Get-Credential)
+$targetArray = New-PfaArray -EndPoint 192.0.0.2 -IgnoreCertificateError -Credentials (Get-Credential)
 $connectionKey = Get-PfaConnectionKey -Array $targetArray
 # -ManagementAddress is the Target Array IP, -ReplicationAddress is the Target Array Replbond or Replication IP
-New-PfaReplicationConnection -Array $sourceArray -ManagementAddress "x.x.x.x" -replicationAddress "x.x.x.x" -connectionKey $connectionKey.connection_key -Types "replication"
+New-PfaReplicationConnection -Array $sourceArray -ManagementAddress 192.0.0.1 -replicationAddress 192.0.0.2 -connectionKey $connectionKey.connection_key -Types "replication"
 
-### END
+## EXAMPLE
+# This is an example script to change a user password on a FlashArray
+    Add-Type @"
+        using System.Net;
+        using System.Security.Cryptography.X509Certificates;
+        public class TrustAllCertsPolicy : ICertificatePolicy {
+            public bool CheckValidationResult(
+                ServicePoint srvPoint, X509Certificate certificate,
+                WebRequest request, int certificateProblem) {
+                return true;
+            }
+        }
+"@
+    [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+    <# The "$OldPassword" and "$Newpassword" strings should not be changed to a SecureString unless the logic for the Invoke-WebRequest is also altered. #>
+    function Update-UserFaPassword {
+        Param (
+            [Parameter(Mandatory = $true)][String]$User,
+            [Parameter(Mandatory = $true)][String]$OldPassword,
+            [Parameter(Mandatory = $true)][String]$NewPassword,
+            [Parameter(Mandatory = $True)][Object[]]$Array
+        )
+    <# This function expects a connection to have already been made to the target array using the Pure PowerShell SDK v1. That array object must be passed to this function, as we use that to obtain endpoint and API token information. The api version could be 1.19 if present on the array. #>
+        $baseURI = "https://" + $fa + "/api/1.17"
+    <# Establish Connection Using API Token from SDK1 Array Variable. #>
+        $connectURI = $baseURI + "/auth/session"
+        $connectBody = @{
+            api_token = $fa.ApiToken
+        }
+        $result = Invoke-WebRequest -Uri $connectURI -Method Post -Body $connectBody -SessionVariable pure -UseBasicParsing
+    <# Update Password #>
+        $adminURI = $baseURI + "/admin/" + $User
+        $body = @{
+            password     = $NewPassword;
+            old_password = $OldPassword;
+        }
+        $body = $body | ConvertTo-Json
+        $result = Invoke-WebRequest -Uri $adminURI -WebSession $pure -Method Put -Body $body -ContentType "application/json" -UseBasicParsing
+    <# Get and Return Updated User #>
+        $user = Invoke-WebRequest -Uri $adminURI -Method Get -WebSession $pure -UseBasicParsing
+        return ConvertFrom-Json($user)
+        }
+    <# Example Usage of the Update-UserFaPassword Function #>
+        $fa = New-PfaArray -EndPoint 192.0.0.1 -Credentials (Get-Credential) -IgnoreCertificateError
+        Update-UserFaPassword -Array $fa -User "user1" -OldPassword "myoldpassword" -NewPassword "mynewpassword"
+
+
+### END EXAMPLES FILE
