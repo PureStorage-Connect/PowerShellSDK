@@ -1,11 +1,11 @@
-// PURE STORAGE FLASHARRAY POWERSHELL SDK 1.19.31 RELEASE NOTES
+// PURE STORAGE FLASHARRAY POWERSHELL SDK 1.19.49 RELEASE NOTES
+
+// This release only contains a single resolution for the issue stated in the "FIXES" section. //
 
 The Pure Storage PowerShell SDK provides integration with the Purity Operating Environment and FlashArray. It provides functionalities of Purity's REST API as PowerShell cmdlets.
-There are currently two releases of the SDK:
-	- version 1 for Purity REST API versions 1.7 to 1.19
-	- version 2 for Purity REST API version 2.0 and later.
-	
-// NOTICE: This SDK version 1.19.31 will be the last major version release for FlashArray API versions 1.19 and lower. The PowerShell SDK v2 should be used moving forward for API parity with FlashArray REST API 2.0 and later.
+There are currently two releases of the SDK: - version 1 for Purity REST API versions 1.7 to 1.19 - version 2 for Purity REST API version 2.0 and later.
+
+// NOTICE: This SDK version 1.19.49 will be the last major version release for FlashArray API versions 1.19 and lower. The PowerShell SDK v2 should be used moving forward for API parity with FlashArray REST API 2.0 and later.
 
 // RELEASE COMPATIBILITY.
 
@@ -17,76 +17,38 @@ There are currently two releases of the SDK:
 
 // INSTALLATION AND REMOVAL.
 
-	- Full installation instructions are available from this link - https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell/Pure_Storage_PowerShell_SDK
-	- An Administrator privilege is required to install.
-- INSTALL.
-	- To install the PowerShell SDK, there are two options for the method of installation. The recommened method is to use the PowerShell Gallery by using the Install-Module cmdlet.
-	- You can also install via a Windows MSI installer, where you extract and run the PurePowerShellSDKInstaller.msi file, and follow the instructions.
-- INSTALL PATH.
-	- If the module is installed using the MSI installer, by default, the module will be installed to the \Program Files\Pure Storage\PowerShell\Modules folder. This path is configurable during the installation.
-	- When the module is installed using the PowerShell Gallery with the Install-Module cmdlet, the module is installed in the default scope $PSModulePath.
-- VERIFY INSTALL.
-	- To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell session and verify the release version.
-- REMOVAL.
-	- If you used the PowerShell Gallery installation method, you uninstall the SDK by using the Uninstall-Module cmdlet. Example: Uninstall-Module -Name PureStoragePowerShellSDK 
-	- For MSI installations, you can use the "Programs and Features" of the Control Panel.
+    - Full installation instructions are available from this link - https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell/Pure_Storage_PowerShell_SDK
+    - An Administrator privilege is required to install.
 
+- INSTALL.
+  - To install the PowerShell SDK, there are two options for the method of installation. The recommened method is to use the PowerShell Gallery by using the Install-Module cmdlet.
+  - You can also install via a Windows MSI installer, where you extract and run the PurePowerShellSDKInstaller.msi file, and follow the instructions.
+- INSTALL PATH.
+  - If the module is installed using the MSI installer, by default, the module will be installed to the \Program Files\Pure Storage\PowerShell\Modules folder. This path is configurable during the installation.
+  - When the module is installed using the PowerShell Gallery with the Install-Module cmdlet, the module is installed in the default scope $PSModulePath.
+- VERIFY INSTALL.
+  - To verify the installation, run "Get-Command -Module PureStoragePowerShellSDK" in a new PowerShell session and verify the release version.
+- REMOVAL.
+  - If you used the PowerShell Gallery installation method, you uninstall the SDK by using the Uninstall-Module cmdlet. Example: Uninstall-Module -Name PureStoragePowerShellSDK
+  - For MSI installations, you can use the "Programs and Features" of the Control Panel.
 
 // WHAT'S NEW.
 
-	1. New Cmdlets added in this release. Total cmdlets available is 466.
-	- Add-PfaPodReplicaLink
-	- Add-PfaVolumesTag
-	- Get-PfaAllPodIOLatencyReplicationMetricsMirrored
-	- Get-PfaAllPodIOReplicationMetricsMirrored
-	- Get-PfaAllVolumeOffloadSnapshotRestoreStatus
-	- Get-PfaOffloadSnapshotRestoreStatus
-	- Get-PfaOffloadTargetWithSpace
-	- Get-PfaPendingDeleteSnapshotsTags
-	- Get-PfaPendingDeleteVolumesTags
-	- Get-PfaPodIOLatencyReplicationMetricsMirrored
-	- Get-PfaPodIOReplicationMetricsMirrored
-	- Get-PfaPodReplicaLink
-	- Get-PfaPodReplicaLinkHistory
-	- Get-PfaSnapshotTag
-	- Get-PfaSnapshotsTag
-	- Get-PfaVolumeIOLatencyMetricsMirroredByTimeRange
-	- Get-PfaVolumeIOMetricsMirroredByTimeRange
-	- Get-PfaVolumeTags
-	- Get-PfaVolumesTags
-	- Invoke-PfaRestCommand
-	- New-PfaRestApiToken
-	- Remove-PfaReplicaLink
-	- Remove-PfaVolumeTag
-	- Set-PfaPodDemote
-	- Set-PfaPodPromote
-
-	2. Raised the required minimum FlashArray Purity API version to 1.7.
-	3. Added PowerShell version check to New-PfaArray cmdlet. This was done to inform the user that the SDK v1 can not be executed in a PowerShell version 6 (.net Core) or later session as it is not compatible with those versions. Optimally, this warning should be presented at the time of the module load, but that is not possible within the PowerShell framework.
-	4. Added support for persistent array connections. Once an array connection is made using the New-PfaArray cmdlet, a new global variable is created called $PURE_AUTH_1_X. All commands executed after will use that variable and that array connection. This removes the requirement of having to specify the -Array parameter for each cmdlet. When the cmdlet Disconnect-PfaArray is executed, the $PURE_AUTH_1_X variable is removed. This change coincides with the same functionality of the SDK version 2.
+    None
 
 // FIXES.
 
-	1. Enhanced cmdlet help and online dynamic help. 
-	2. Due to changes in the REST API, not all cmdlets support the Filtering parameters that include -Filter, -Sort, -Offset, -Limit, and -TotalItemCountVariable, even though they allowed them when executed. This has been resolved whereas only the cmdlets that support Filtering will allow the parameters. Please see about_Purity_Filtering help for more information on filtering with examples.
+    1. Due to a security change in Purity version 6.1.15, the New-PfaCliCommand cmdlet can not aquire a valid certificate from the array to execute a CLI command. The failure happens before the command is sent to the array.
 
 // DEPRECATED CMDLETS.
 
-	None
-
+    None
 
 // KNOWN ISSUES.
 
-	1. When using the Get-PfaAllNetworkInterfaceMetricsErrorTotal cmdlet with API versions 1.17 to 1.19:
-		- The "Total" result is only returned for Purity versions 5.3.0, 5.3.2, and 6.0.0. "Total" is not returned on 6.1.6 or 6.2.0. This is due to a limitation in the Purity REST API.
-	2. When using the Get-PfaAllDriveAttributes cmdlet with API version 1.0 to 1.19:
-		- "last_evac_completed" and "last_failure" results are only available with Purity versions 5.2.7, 5.3.0, and 5.3.2. This is due to a limitation in the Purity REST API.
-	3. The cmdlet Get-PfaBlockDifferences contains a parameter called -VolumeName. This parameter name is incorrect in that the cmdlet only works with snapshots, not volumes. This parameter has an alternative alias of -SnapshotName that can be used. Since this is an alias of the -VolumeName parameter, scripts that use that parameter will continue to execute without error.
-	4. After the final release code was finalized, it was discovered that the cmdlet Remove-PfaReplicaLink should have been named Remove-PfaPodReplicaLink. This may be corrected in a minor release.
-	5. Any previous known issues in the 1.17.16 release that have not been listed as corrected in the "Fixes" section above.
+    1. Any previous known issues in the 1.19.31 release or later that have not been listed as corrected in the "Fixes" section above.
 
 // RESOURCES.
 
-	- Join the Pure Storage Code Slack Team and talk all things APIs and SDKs by using this self-invitation link - https://codeinvite.purestorage.com
-	- Our https://code.purestorage.com site links to all available API and SDK information on Github and Support.
-
+    - Join the Pure Storage Code Slack Team and talk all things APIs and SDKs by using this self-invitation link - https://codeinvite.purestorage.com
+    - Our https://code.purestorage.com site links to all available API and SDK information on Github and Support.
