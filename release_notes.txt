@@ -38,7 +38,7 @@ There are currently two releases of the SDK: - version 1 for Purity REST API ver
 
 // FIXES.
 
-    1. Due to a security change in Purity version 6.1.15, the New-PfaCliCommand cmdlet can not aquire a valid certificate from the array to execute a CLI command. The failure happens before the command is sent to the array.
+    1. Due to a security change in Purity version 6.1.15, the New-PfaCliCommand cmdlet can not acquire a valid certificate from the array to execute a CLI command. The failure happens before the command is sent to the array.
 
 // DEPRECATED CMDLETS.
 
