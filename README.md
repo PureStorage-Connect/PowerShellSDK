@@ -23,8 +23,7 @@ This repository contains the standalone MSI installer in the Releases section.
 
 ### :point_down: DOWNLOADS
 
-:small_orange_diamond: [Version 1 MSI Installation Package](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDKInstaller.msi)
-
+:small_orange_diamond: [Version 1.19.49 MSI Installation Package](https://github.com/PureStorage-Connect/PowerShellSDK/releases/download/v1.19.49.0/PurePowerShellSDKInstaller_1.19.49.msi)
 :small_orange_diamond:   [Downloadable HTML Help File](https://github.com/PureStorage-Connect/PowerShellSDK/blob/master/PureStoragePowerShellSDK-Help.html)
 
 :small_orange_diamond:  [Pure Storage Support -- Programming Interfaces > PowerShell](https://support.purestorage.com/Solutions/Microsoft_Platform_Guide/a_Windows_PowerShell)
