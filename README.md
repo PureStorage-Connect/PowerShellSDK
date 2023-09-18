@@ -1,5 +1,7 @@
 
 ## Pure Storage FlashArray PowerShell SDK version 1<img src="/images/pure_powershell_sdk.png" align="right">
+<br>
+## This version of the SDK is no longer maintained and will be deprecated in the near future.
 
 ![GitHub all releases](https://img.shields.io/github/downloads/PureStorage-Connect/PowerShellSDK/total?color=orange&label=GitHub%20downloads&logo=powershell&style=plastic)  ![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/PureStoragePowerShellSDK?color=orange&label=PSGallery%20downloads&logo=powershell&style=plastic)
 
